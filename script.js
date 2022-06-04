@@ -10,6 +10,7 @@ const WalletConnectProvider = window.WalletConnectProvider.default;
 const Fortmatic = window.Fortmatic;
 const evmChains = window.evmChains;
 console.log('typeof ethereumjs.Tx:',            (typeof ethereumjs.Tx))
+console.log('typeof ethereum:',            (typeof ethereum))
 
 // Web3modal instance
 let web3Modal
@@ -89,8 +90,9 @@ async function fetchAccountData() {
   const chainData = evmChains.getChain(chainId);
   document.querySelector("#network-name").textContent = chainData.name;
 
-  // Get list of accounts of the connected wallet
-  const accounts = await web3.eth.getAccounts();
+  // // Get list of accounts of the connected wallet
+  // const accounts = await web3.eth.getAccounts();
+  const accounts = await ethereum.request({ method: 'eth_accounts' });
 
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
@@ -144,7 +146,7 @@ async function fetchAccountData() {
   let amounts = amount.toString()
   
   
-//   //building a transaction
+//building a transaction
 //   const txObject = {
 //   nonce:    web3.utils.toHex(txCount),
 //   to:       account1,
