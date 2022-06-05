@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
+    <script>
+        console.log(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+async function getCurrentBlock() {
+  let currentBlock = await provider.getBlockNumber();
+  console.log(currentBlock);
+}
+
+getCurrentBlock();
+
+    </script>
+  </head>
+  <body>
+    <div id="wallet"></div>
+  </body>
+</html>
