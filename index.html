@@ -4,7 +4,8 @@
     <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
 
     <script type="text/javascript">
-        const provider = detectEthereumProvider()
+        async function detect() {
+            const provider = await detectEthereumProvider();
       
         if (provider) {
           // handle provider
@@ -13,6 +14,8 @@
           // handle no provider
           console.log("No");
         }
+    }
+    detect();
       </script>
   </head>
   <body>
