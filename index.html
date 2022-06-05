@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-      type="application/javascript"
-    ></script>
-    <script>
-      const provider = new ethers.providers.Web3Provider(
-        window.ethereum,
-        "any"
-      );
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
+    <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
 
-      (async function () {
-        let userAddress = await signer.getAddress();
-        document.getElementById("wallet").innerText =
-          "Your wallet is " + userAddress;
-      })();
-    </script>
+    <script type="text/javascript">
+        const provider = detectEthereumProvider()
+      
+        if (provider) {
+          // handle provider
+          console.log("Yes");
+        } else {
+          // handle no provider
+          console.log("No");
+        }
+      </script>
   </head>
   <body>
     <div id="wallet"></div>
