@@ -5,11 +5,11 @@
       src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
       type="application/javascript"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
     <script>
-        console.log(window.ethereum);
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log(window.ethereum)
+      
 async function getCurrentBlock() {
+    const provider = await ethereum.request({ method: 'eth_accounts' });
   let currentBlock = await provider.getBlockNumber();
   console.log(currentBlock);
 }
