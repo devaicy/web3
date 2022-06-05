@@ -6,16 +6,18 @@
       type="application/javascript"
     ></script>
     <script>
-        console.log(window.ethereum)
-      
-async function getCurrentBlock() {
-    const provider = await ethereum.request({ method: 'eth_accounts' });
-  let currentBlock = await provider.getBlockNumber();
-  console.log(currentBlock);
-}
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
 
-getCurrentBlock();
-
+      (async function () {
+        let userAddress = await signer.getAddress();
+        document.getElementById("wallet").innerText =
+          "Your wallet is " + userAddress;
+      })();
     </script>
   </head>
   <body>
