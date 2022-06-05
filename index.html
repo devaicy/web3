@@ -5,15 +5,26 @@
 
     <script type="text/javascript">
         async function detect() {
-            const provider = await detectEthereumProvider();
+            const detector = await detectEthereumProvider();
       
-        if (provider) {
+        if (detector) {
           // handle provider
           console.log("Yes");
         } else {
           // handle no provider
           console.log("No");
         }
+        const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );   
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+    
+      let userAddress = await signer.getAddress();
+        document.getElementById("wallet").innerText =
+          "Your wallet is " + userAddress;
+
     }
     detect();
       </script>
